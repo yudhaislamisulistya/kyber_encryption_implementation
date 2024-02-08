@@ -11,6 +11,7 @@
             <enclosure url="https://play.google.com/store/apps/details?id=com.moonwink.simaster" sparkle:version="1.0.0" sparkle:os="android" />
             <sparkle:minimumSystemVersion>1.0.0</sparkle:minimumSystemVersion>
             <sparkle:mandatoryUpdate>true</sparkle:mandatoryUpdate>
+            <sparkle:tags> <sparkle:criticalUpdate /> </sparkle:tags> 
         </item>
         <!-- iOS -->
         <item>
@@ -20,6 +21,7 @@
             <enclosure url="https://itunes.apple.com/us/app/simaster-vnext-student/id1448135863?ls=1&mt=8" sparkle:version="1.0.0" sparkle:os="ios" />
             <sparkle:minimumSystemVersion>1.0.0</sparkle:minimumSystemVersion>
             <sparkle:mandatoryUpdate>true</sparkle:mandatoryUpdate>
+            <sparkle:tags> <sparkle:criticalUpdate /> </sparkle:tags> 
         </item>
         <!-- Version 1.1.0 -->
         <!-- Android -->
