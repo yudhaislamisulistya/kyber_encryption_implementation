@@ -1,30 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
-  <channel>
-    <title>For unit test only</title>
-    <item>
-        <title>Version 1.0.1</title>
-        <description>desc Версия</description>
-        <pubDate>Sat, 26 Jul 2014 15:20:11 +0000</pubDate>
-        <enclosure url="http://localhost:1337/Sparkle_Test_App.zip" sparkle:version="1.0.1" />
-        <sparkle:tags> <sparkle:criticalUpdate /> </sparkle:tags> 
-    </item>
-    <item>
-        <title>Version 1.0.1</title>
-        <pubDate>Sat, 26 Jul 2014 15:20:13 +0000</pubDate>
-        <enclosure url="http://localhost:1337/Sparkle_Test_App.zip" sparkle:version="1.0.1" sparkle:os="android" />
-    </item>
-    <item>
-        <title>Version 1.0.1</title>
-        <pubDate>Sat, 26 Jul 2014 15:20:13 +0000</pubDate>
-        <enclosure url="http://localhost:1337/Sparkle_Test_App.zip" sparkle:version="1.0.1" sparkle:os="iOS" />
-        <sparkle:minimumSystemVersion>17.0.0</sparkle:minimumSystemVersion>
-    </item>
-    <item>
-        <title>Version 1.0.1</title>
-        <sparkle:version>1.0.1</sparkle:version>
-        <enclosure url="http://localhost:1337/Sparkle_Test_App_1.0.1.zip" sparkle:version="1.0.1" />
-    </item>
-  </channel>
+    <channel>
+        <title>Debt Now App - Appcast</title>
+        <!-- Android -->
+        <item>
+            <title>Version 1.15.0</title>
+            <description>Minor updates and improvements.</description>
+            <pubDate>Sun, 30 Dec 2018 12:00:00 +0000</pubDate>
+            <enclosure url="https://play.google.com/store/apps/details?id=com.moonwink.treasury" sparkle:version="1.15.0" sparkle:os="android" />
+        </item>
+        <!-- iOS -->
+        <item>
+            <title>Version 1.15.0</title>
+            <description>Minor updates and improvements.</description>
+            <pubDate>Sun, 30 Dec 2018 12:00:00 +0000</pubDate>
+            <enclosure url="https://itunes.apple.com/us/app/debt-now/id1448135863?ls=1&mt=8" sparkle:version="1.15.0" sparkle:os="ios" />
+        </item>
+    </channel>
 </rss>
-<!-- Test -->
