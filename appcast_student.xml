@@ -2,12 +2,27 @@
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
   <channel>
     <title>For unit test only</title>
-    <!-- Item for update from version 1.0.0 to 1.0.1 -->
+    <item>
+        <title>Version 2.0</title>
+        <description>desc Версия</description>
+        <pubDate>Sat, 26 Jul 2014 15:20:11 +0000</pubDate>
+        <enclosure url="http://localhost:1337/Sparkle_Test_App.zip" sparkle:version="2.0" />
+        <sparkle:tags> <sparkle:criticalUpdate /> </sparkle:tags> 
+    </item>
     <item>
         <title>Version 1.0.1</title>
-        <pubDate>Sat, 08 Feb 2024 00:00:00 +0000</pubDate>
+        <enclosure url="http://localhost:1337/Sparkle_Test_App.zip" sparkle:version="3.0" sparkle:os="android" />
+    </item>
+    <item>
+        <title>Version 1.0.1</title>
+        <pubDate>Sat, 26 Jul 2014 15:20:13 +0000</pubDate>
+        <enclosure url="http://localhost:1337/Sparkle_Test_App.zip" sparkle:version="4.0" sparkle:os="iOS" />
+        <sparkle:minimumSystemVersion>17.0.0</sparkle:minimumSystemVersion>
+    </item>
+    <item>
+        <title>Version 1.0.1</title>
+        <sparkle:version>1.0.1</sparkle:version>
         <enclosure url="http://localhost:1337/Sparkle_Test_App_1.0.1.zip" sparkle:version="1.0.1" />
-        <sparkle:minimumSystemVersion>1.0.0</sparkle:minimumSystemVersion>
     </item>
   </channel>
 </rss>
