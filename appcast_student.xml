@@ -2,19 +2,39 @@
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
     <channel>
         <title>Simaster VNEXT Student - Appcast</title>
+        <!-- Version 1.0.0 -->
         <!-- Android -->
         <item>
-            <title>Version 1.15.0</title>
-            <description>Minor updates and improvements.</description>
+            <title>Version 1.0.0</title>
+            <description>Initial release.</description>
             <pubDate>Sun, 30 Dec 2018 12:00:00 +0000</pubDate>
-            <enclosure url="https://play.google.com/store/apps/details?id=com.moonwink.treasury" sparkle:version="1.15.0" sparkle:os="android" />
+            <enclosure url="https://play.google.com/store/apps/details?id=com.moonwink.simaster" sparkle:version="1.0.0" sparkle:os="android" />
+            <sparkle:minimumSystemVersion>1.0.0</sparkle:minimumSystemVersion>
+            <sparkle:mandatoryUpdate>true</sparkle:mandatoryUpdate>
         </item>
         <!-- iOS -->
         <item>
-            <title>Version 1.15.0</title>
-            <description>Minor updates and improvements.</description>
+            <title>Version 1.0.0</title>
+            <description>Initial release.</description>
             <pubDate>Sun, 30 Dec 2018 12:00:00 +0000</pubDate>
-            <enclosure url="https://itunes.apple.com/us/app/debt-now/id1448135863?ls=1&mt=8" sparkle:version="1.15.0" sparkle:os="ios" />
+            <enclosure url="https://itunes.apple.com/us/app/simaster-vnext-student/id1448135863?ls=1&mt=8" sparkle:version="1.0.0" sparkle:os="ios" />
+            <sparkle:minimumSystemVersion>1.0.0</sparkle:minimumSystemVersion>
+            <sparkle:mandatoryUpdate>true</sparkle:mandatoryUpdate>
+        </item>
+        <!-- Version 1.1.0 -->
+        <!-- Android -->
+        <item>
+            <title>Version 1.1.0</title>
+            <description>Added new feature.</description>
+            <pubDate>Sun, 30 Dec 2018 12:00:00 +0000</pubDate>
+            <enclosure url="https://play.google.com/store/apps/details?id=com.moonwink.simaster" sparkle:version="1.1.0" sparkle:os="android" />
+        </item>
+        <!-- iOS -->
+        <item>
+            <title>Version 1.1.0</title>
+            <description>Added new feature.</description>
+            <pubDate>Sun, 30 Dec 2018 12:00:00 +0000</pubDate>
+            <enclosure url="https://itunes.apple.com/us/app/simaster-vnext-student/id1448135863?ls=1&mt=8" sparkle:version="1.1.0" sparkle:os="ios" />
         </item>
     </channel>
 </rss>
