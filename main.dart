@@ -34,34 +34,45 @@ void measurePerformanceNTRU(String data) {
   keyGenStopwatch.stop();
 
   // Encrypt
-  var encryptStopwatch = Stopwatch()..start();
+  var encryptStopwatchKem = Stopwatch()..start();
   List<String> kemResult = generateSecretKey(selfPublicKey, selfPrivateKeyF, selfPrivateKeyFp, selfPublicKey);
+  encryptStopwatchKem.stop();
 
   String keySession = kemResult[0];
 
+  var encryptStopwatchAES = Stopwatch()..start();
   String encryptedContent = encryptAES(keySession, data);
-  encryptStopwatch.stop();
+  encryptStopwatchAES.stop();
 
   // Decrypt
-  var decryptStopwatch = Stopwatch()..start();
+  var decryptStopwatchKem = Stopwatch()..start();
   try {
     decryptSecretKey(selfPublicKey, selfPrivateKeyF, selfPrivateKeyFp, selfPublicKey, kemResult[1], kemResult[2]);
   } catch (e) {
     print(e);
   }
+  decryptStopwatchKem.stop();
+  var decryptStopwatchAES = Stopwatch()..start();
   String decryptedContent = decryptAES(keySession, encryptedContent);
-  decryptStopwatch.stop();
+  decryptStopwatchAES.stop();
 
-  String formattedKeyGen = '${(keyGenStopwatch.elapsedMicroseconds ~/ 60000).toString().padLeft(2, '0')}.${((keyGenStopwatch.elapsedMicroseconds % 60000) ~/ 1000).toString().padLeft(2, '0')}.${(keyGenStopwatch.elapsedMicroseconds % 1000).toString().padLeft(2, '0')} ms';
-  var encryptTime = encryptStopwatch.elapsedMicroseconds;
-  String formattedEncrypt = '${(encryptTime ~/ 60000).toString().padLeft(2, '0')}.${((encryptTime % 60000) ~/ 1000).toString().padLeft(2, '0')}.${(encryptTime % 1000).toString().padLeft(2, '0')} ms';
-  String formattedDecrypt = '${(decryptStopwatch.elapsedMicroseconds ~/ 60000).toString().padLeft(2, '0')}.${((decryptStopwatch.elapsedMicroseconds % 60000) ~/ 1000).toString().padLeft(2, '0')}.${(decryptStopwatch.elapsedMicroseconds % 1000).toString().padLeft(2, '0')} ms';
+  String formattedKeyGen = '${(keyGenStopwatch.elapsedMicroseconds / 1000000).toString()} detik';
+  String formattedEncryptKEM = '${(encryptStopwatchKem.elapsedMicroseconds / 1000000).toString()} detik';
+  String formattedEncryptAES = '${(encryptStopwatchAES.elapsedMicroseconds / 1000000).toString()} detik';
+  String formattedDecryptKEM = '${(decryptStopwatchKem.elapsedMicroseconds / 1000000).toString()} detik';
+  String formattedDecryptAES = '${(decryptStopwatchAES.elapsedMicroseconds / 1000000).toString()} detik';
+  String formattedEncryptAll = '${(encryptStopwatchKem.elapsedMicroseconds / 1000000 + encryptStopwatchAES.elapsedMicroseconds / 1000000).toString()} detik';
+  String formattedDecryptAll = '${(decryptStopwatchKem.elapsedMicroseconds / 1000000 + decryptStopwatchAES.elapsedMicroseconds / 1000000).toString()} detik';
 
   print("SymetricKeyBase64: $keySession");
   print("Encrypted Data NTRU: $encryptedContent");
   print("Key Generation NTRU: $formattedKeyGen");
-  print("Encryption NTRU: $formattedEncrypt");
-  print("Decryption NTRU: $formattedDecrypt");
+  print("Encryption ALL NTRU: $formattedEncryptAll");
+  print("Encryption KEM NTRU: $formattedEncryptKEM");
+  print("Encryption AES NTRU: $formattedEncryptAES");
+  print("Decryption ALL NTRU: $formattedDecryptAll");
+  print("Decryption KEM NTRU: $formattedDecryptKEM");
+  print("Decryption AES NTRU: $formattedDecryptAES");
   print("Decrypted Data NTRU: $decryptedContent");
 }
 
@@ -74,13 +85,13 @@ void measurePerformanceKyber(Kyber kyber, String data) {
 
   var publicKey = keyPair.publicKey.bytes;
 
-  var encryptStopwatch = Stopwatch()..start();
+  var encryptsKEMStopwatch = Stopwatch()..start();
   // Encrypt
   KyberEncryptionResult encapsulated = kyber.encrypt(publicKey);
   var symmetricKey = encapsulated.sharedSecret.bytes;
-  encryptStopwatch.stop();
 
   String symmetricKeyBase64 = base64Encode(symmetricKey);
+  encryptsKEMStopwatch.stop();
 
   var encryptAESStopwatch = Stopwatch()..start();
   print("symmetricKeyBase64 (${kyber.level}): $symmetricKeyBase64");
@@ -93,14 +104,26 @@ void measurePerformanceKyber(Kyber kyber, String data) {
   String decryptedData = decryptAES(symmetricKeyBase64, encryptedData);
   decryptAESStopwatch.stop();
 
-  String formattedKeyGen = '${(keyGenStopwatch.elapsedMicroseconds ~/ 60000).toString().padLeft(2, '0')}.${((keyGenStopwatch.elapsedMicroseconds % 60000) ~/ 1000).toString().padLeft(2, '0')}.${(keyGenStopwatch.elapsedMicroseconds % 1000).toString().padLeft(2, '0')} ms';
-  var encryptTime = encryptAESStopwatch.elapsedMicroseconds;
-  String formattedEncrypt = '${(encryptTime ~/ 60000).toString().padLeft(2, '0')}.${((encryptTime % 60000) ~/ 1000).toString().padLeft(2, '0')}.${(encryptTime % 1000).toString().padLeft(2, '0')} ms';
-  String formattedDecrypt = '${(decryptAESStopwatch.elapsedMicroseconds ~/ 60000).toString().padLeft(2, '0')}.${((decryptAESStopwatch.elapsedMicroseconds % 60000) ~/ 1000).toString().padLeft(2, '0')}.${(decryptAESStopwatch.elapsedMicroseconds % 1000).toString().padLeft(2, '0')} ms';
+  var decryptKEMStopwatch = Stopwatch()..start();
+  kyber.encrypt(publicKey);
+  decryptKEMStopwatch.stop();
+
+  String formattedKeyGen = '${(keyGenStopwatch.elapsedMicroseconds / 1000000).toString()} detik';
+  String formattedEncryptKEM = '${(encryptsKEMStopwatch.elapsedMicroseconds / 1000000).toString()} detik';
+  String formattedEncryptAES = '${(encryptAESStopwatch.elapsedMicroseconds / 1000000).toString()} detik';
+  String formattedDecryptAES = '${(decryptAESStopwatch.elapsedMicroseconds / 1000000).toString()} detik';
+  String formattedDecryptKEM = '${(decryptKEMStopwatch.elapsedMicroseconds / 1000000).toString()} detik';
+  String formattedEncrypt = '${(encryptsKEMStopwatch.elapsedMicroseconds / 1000000 + encryptAESStopwatch.elapsedMicroseconds / 1000000).toString()} detik';
+  String formattedDecrypt = '${(decryptKEMStopwatch.elapsedMicroseconds / 1000000 + decryptAESStopwatch.elapsedMicroseconds / 1000000).toString()} detik';
+
   print("Encryption Data (${kyber.level}): $encryptedData");
   print("Key Generation (${kyber.level}): $formattedKeyGen");
-  print("Encryption (${kyber.level}): $formattedEncrypt");
-  print("Decryption (${kyber.level}): $formattedDecrypt");
+  print("Encryption ALL (${kyber.level}): $formattedEncrypt");
+  print("Encryption KEM (${kyber.level}): $formattedEncryptKEM");
+  print("Encryption AES (${kyber.level}): $formattedEncryptAES");
+  print("Decryption ALL (${kyber.level}): $formattedDecrypt");
+  print("Decryption KEM (${kyber.level}): $formattedDecryptKEM");
+  print("Decryption AES (${kyber.level}): $formattedDecryptAES");
   print("Decrypted Data (${kyber.level}): $decryptedData");
   print("");
 }
